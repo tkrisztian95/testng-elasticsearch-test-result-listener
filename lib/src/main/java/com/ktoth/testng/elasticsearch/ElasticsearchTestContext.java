@@ -40,9 +40,13 @@ public class ElasticsearchTestContext {
 
     /**
      * Call this first before using the ElasticsearchTestResultListener
+     *
      * @param elastic_host Your Elasticsearch host base URL
      */
     public static void init(String elastic_host) {
+        if (elastic_host == null || elastic_host.isEmpty()) {
+            throw new IllegalArgumentException("Argument 'elastic_host' must not be null or empty!");
+        }
         if (runId == null) {
             generateRunId();
         }

@@ -50,6 +50,8 @@ public class ElasticsearchTestResultListener implements ITestListener {
     @Override
     public void onStart(ITestContext iTestContext) {
         //skip
+        String elasticHostUrl = System.getProperty("testng.elasticsearch.url");
+        ElasticsearchTestContext.init(elasticHostUrl);
     }
 
     @Override

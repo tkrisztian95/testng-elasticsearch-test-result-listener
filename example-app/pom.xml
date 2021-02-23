@@ -43,6 +43,10 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.1</version>
                     <configuration>
+                        <systemPropertyVariables>
+                            <!--http://www.javabyexamples.com/set-system-property-for-tests-->
+                            <testng.elasticsearch.url>http://localhost:9200</testng.elasticsearch.url>
+                        </systemPropertyVariables>
                     </configuration>
                 </plugin>
             </plugins>
