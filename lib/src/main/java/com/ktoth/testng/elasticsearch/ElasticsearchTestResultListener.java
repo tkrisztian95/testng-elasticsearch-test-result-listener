@@ -4,15 +4,15 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
+/**
+ * TestNG test listener to capture and send test results into Elasticsearch
+ */
 public class ElasticsearchTestResultListener implements ITestListener {
 
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-
+        //skip
     }
 
     @Override
@@ -44,11 +44,12 @@ public class ElasticsearchTestResultListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
+        //skip
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
+        //skip
     }
 
     @Override

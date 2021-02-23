@@ -2,6 +2,10 @@ package com.ktoth.testng.elasticsearch;
 
 import java.util.UUID;
 
+/**
+ * Context for ElasticsearchTestResultListener
+ * Needs to be initialized first via static call ElasticsearchTestContext.init(String elastic_host)
+ */
 public class ElasticsearchTestContext {
 
     private static String runId;
@@ -34,6 +38,10 @@ public class ElasticsearchTestContext {
         return runId;
     }
 
+    /**
+     * Call this first before using the ElasticsearchTestResultListener
+     * @param elastic_host Your Elasticsearch host base URL
+     */
     public static void init(String elastic_host) {
         if (runId == null) {
             generateRunId();
