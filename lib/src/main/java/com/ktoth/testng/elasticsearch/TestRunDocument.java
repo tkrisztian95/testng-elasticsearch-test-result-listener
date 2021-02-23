@@ -1,4 +1,4 @@
-package com.ktoth.model;
+package com.ktoth.testng.elasticsearch;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -6,7 +6,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class TestRunDocument {
+class TestRunDocument {
 
 
     /**

@@ -1,4 +1,4 @@
-package com.ktoth.model;
+package com.ktoth.testng.elasticsearch;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-public class TestResultDocument {
+class TestResultDocument {
 
     /**
      * Elastic built-in supported date-time format
@@ -24,6 +24,12 @@ public class TestResultDocument {
     @JsonProperty("testClass")
     private String testClass;
 
+    @JsonProperty("testMethodName")
+    private String testMethodName;
+
+    @JsonProperty("testMethodQualifiedName")
+    private String testMethodQualifiedName;
+
     @JsonProperty("description")
     private String description;
 
@@ -33,15 +39,25 @@ public class TestResultDocument {
     @JsonProperty("executionDate")
     private String executionDate;
 
+    @JsonProperty("executionThreadId")
+    private String executionThreadId;
+
+    @JsonProperty("executionThreadName")
+    private String executionThreadName;
+
     @JsonProperty("environment")
     private HashMap<String, String> environment;
 
-    public TestResultDocument(String testRunId, ITestResult result, String status) {
+    public TestResultDocument(String testRunId, Long threadId, String threadName, ITestResult result, String status) {
         this.testRunId = testRunId;
         this.status = status;
         this.testClass = result.getTestClass().getName();
+        this.testMethodName = result.getMethod().getMethodName();
+        this.testMethodQualifiedName = result.getMethod().getQualifiedName();
         this.description = result.getMethod().getDescription();
         this.executionDate = ZonedDateTime.now().format(basicDateTimeFormatter);
+        this.executionThreadId = String.valueOf(threadId);
+        this.executionThreadName = threadName;
     }
 
     public String getTestClass() {

@@ -1,8 +1,7 @@
 package com.example;
 
-import com.ktoth.ElasticsearchTestContext;
-import com.ktoth.listener.ElasticsearchTestResultListener;
-import com.ktoth.service.ElasticsearchClient;
+import com.ktoth.testng.elasticsearch.ElasticsearchTestContext;
+import com.ktoth.testng.elasticsearch.ElasticsearchTestResultListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -13,7 +12,7 @@ public class GreetingAppTest {
 
     @BeforeClass
     public void setUp() {
-        ElasticsearchTestContext.setClient(new ElasticsearchClient("http://localhost:9200"));
+        ElasticsearchTestContext.init("http://localhost:9200");
     }
 
     /**

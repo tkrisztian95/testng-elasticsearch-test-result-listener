@@ -1,9 +1,8 @@
-package com.example.components;
+package com.example;
 
-import com.ktoth.ElasticsearchTestContext;
-import com.ktoth.listener.ElasticsearchTestResultListener;
-import com.ktoth.service.ElasticsearchClient;
-import org.testng.Assert;
+import com.example.components.LocalizedTextProvider;
+import com.ktoth.testng.elasticsearch.ElasticsearchTestContext;
+import com.ktoth.testng.elasticsearch.ElasticsearchTestResultListener;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,7 +14,7 @@ public class LocalizedTextProviderTest {
 
     @BeforeClass
     public void setUp() {
-        ElasticsearchTestContext.setClient(new ElasticsearchClient("http://localhost:9200"));
+        ElasticsearchTestContext.init("http://localhost:9200");
     }
 
     @Test(description = "Test say greeting in English")
@@ -70,4 +69,29 @@ public class LocalizedTextProviderTest {
         assertTrue(byeFormat.contains("!"));
     }
 
+    @Test(description = "Test say greeting in German")
+    public void test_greetingInGerman() {
+        //ARRANGE
+        String expectedText = "Hallo";
+        LocalizedTextProvider localizedTextProvider = new LocalizedTextProvider(LocalizedTextProvider.SupportedLanguage.de_DE);
+        //ACT
+        String greetingFormat = localizedTextProvider.getGreeting();
+        //ASSERT
+        assertTrue(greetingFormat.contains(expectedText));
+        assertTrue(greetingFormat.contains("%s"));
+        assertTrue(greetingFormat.contains("!"));
+    }
+
+    @Test(description = "Test say bye in German")
+    public void test_byeInGerman() {
+        //ARRANGE
+        String expectedText = "Tschüss";
+        LocalizedTextProvider localizedTextProvider = new LocalizedTextProvider(LocalizedTextProvider.SupportedLanguage.de_DE);
+        //ACT
+        String byeFormat = localizedTextProvider.getBye();
+        //ASSERT
+        assertTrue(byeFormat.contains(expectedText));
+        assertTrue(byeFormat.contains("%s"));
+        assertTrue(byeFormat.contains("!"));
+    }
 }

@@ -43,7 +43,6 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.1</version>
                     <configuration>
-                        <ELASTIC_URL>http://localhost:9200</ELASTIC_URL>
                     </configuration>
                 </plugin>
             </plugins>

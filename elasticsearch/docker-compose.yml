@@ -1,5 +1,4 @@
 #https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html
-# Set https://stackoverflow.com/questions/42111566/elasticsearch-in-windows-docker-image-vm-max-map-count
 version: '2.2'
 services:
   es01:
