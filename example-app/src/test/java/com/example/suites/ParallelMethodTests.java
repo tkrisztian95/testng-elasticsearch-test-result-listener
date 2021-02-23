@@ -1,16 +1,10 @@
 package com.example.suites;
 
-import com.ktoth.testng.elasticsearch.ElasticsearchTestContext;
-import com.ktoth.testng.elasticsearch.ElasticsearchTestResultListener;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-@Listeners(ElasticsearchTestResultListener.class)
 public class ParallelMethodTests {
-
-    @BeforeClass
-    public void setUp() {
-        ElasticsearchTestContext.init("http://localhost:9200");
-    }
 
     @BeforeMethod
     public void beforeMethod() {

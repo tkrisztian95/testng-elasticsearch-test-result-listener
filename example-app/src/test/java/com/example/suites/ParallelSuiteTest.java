@@ -1,10 +1,7 @@
 package com.example.suites;
 
-import com.ktoth.testng.elasticsearch.ElasticsearchTestContext;
-import com.ktoth.testng.elasticsearch.ElasticsearchTestResultListener;
 import org.testng.annotations.*;
 
-@Listeners(ElasticsearchTestResultListener.class)
 public class ParallelSuiteTest {
     String testName = "";
 
@@ -18,7 +15,6 @@ public class ParallelSuiteTest {
 
     @BeforeClass
     public void beforeClass() {
-        ElasticsearchTestContext.init("http://localhost:9200");
         long id = Thread.currentThread().getId();
         System.out.println("Before test-class " + testName + ". Thread id is: "
                 + id);
