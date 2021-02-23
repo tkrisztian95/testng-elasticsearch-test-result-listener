@@ -2,9 +2,11 @@ package com.example.components;
 
 public class LocalizedTextProvider {
     private final SupportedLanguage language;
+
     public enum SupportedLanguage {
         en_EN,
-        de_DE, hu_HU
+        de_DE,
+        hu_HU
     }
 
     public LocalizedTextProvider(SupportedLanguage language) {
