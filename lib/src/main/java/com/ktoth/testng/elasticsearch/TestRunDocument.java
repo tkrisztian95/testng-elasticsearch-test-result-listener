@@ -15,7 +15,7 @@ class TestRunDocument {
      */
     DateTimeFormatter basicDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZ");
 
-    public static final String type = "testng-test-run";
+    public static final String TYPE = "testng-test-run";
 
     @JsonProperty("runId")
     private String runId;

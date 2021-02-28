@@ -1,6 +1,5 @@
 package com.example;
 
-import com.ktoth.testng.elasticsearch.ElasticsearchTestContext;
 import com.ktoth.testng.elasticsearch.ElasticsearchTestResultListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -12,7 +11,7 @@ public class GreetingAppTest {
 
     @BeforeClass
     public void setUp() {
-        ElasticsearchTestContext.init("http://localhost:9200");
+        Assert.assertNotNull(ElasticsearchTestResultListener.getClient()); //Must be initialized
     }
 
     /**
@@ -39,6 +38,20 @@ public class GreetingAppTest {
         final String name = GreetingApp.getName(args);
         //ASSERT
         Assert.assertEquals(name, "Krisztián");
+    }
+
+    @Test
+    public void testSendResultsWithMeta() {
+        ElasticsearchTestResultListener.putTestResultMeta("OS", "Windows");
+        ElasticsearchTestResultListener.putTestResultMeta("Java", "8");
+        Assert.assertTrue(true);
+    }
+
+    @Test
+    public void testSendResultsWithMeta2() {
+        ElasticsearchTestResultListener.putTestResultMeta("OS", "Linux");
+        ElasticsearchTestResultListener.putTestResultMeta("Java", "11");
+        Assert.assertTrue(true);
     }
 
 }

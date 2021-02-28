@@ -16,7 +16,7 @@ class TestResultDocument {
      */
     DateTimeFormatter basicDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZZ");
 
-    public static final String type = "testng-test-result";
+    public static final String TYPE = "testng-test-result";
 
     @JsonProperty("testRunId")
     private String testRunId;
@@ -45,10 +45,10 @@ class TestResultDocument {
     @JsonProperty("executionThreadName")
     private String executionThreadName;
 
-    @JsonProperty("environment")
-    private HashMap<String, String> environment;
+    @JsonProperty("meta")
+    private HashMap<String, String> meta;
 
-    public TestResultDocument(String testRunId, Long threadId, String threadName, ITestResult result, String status) {
+    public TestResultDocument(String testRunId, Thread thread, ITestResult result, String status, HashMap<String, String> meta) {
         this.testRunId = testRunId;
         this.status = status;
         this.testClass = result.getTestClass().getName();
@@ -56,8 +56,9 @@ class TestResultDocument {
         this.testMethodQualifiedName = result.getMethod().getQualifiedName();
         this.description = result.getMethod().getDescription();
         this.executionDate = ZonedDateTime.now().format(basicDateTimeFormatter);
-        this.executionThreadId = String.valueOf(threadId);
-        this.executionThreadName = threadName;
+        this.executionThreadId = String.valueOf(thread.getId());
+        this.executionThreadName = thread.getName();
+        this.meta = meta;
     }
 
     public String getTestClass() {
@@ -92,12 +93,12 @@ class TestResultDocument {
         this.executionDate = executionDate;
     }
 
-    public HashMap<String, String> getEnvironment() {
-        return environment;
+    public HashMap<String, String> getMeta() {
+        return meta;
     }
 
-    public void setEnvironment(HashMap<String, String> environment) {
-        this.environment = environment;
+    public void setMeta(HashMap<String, String> meta) {
+        this.meta = meta;
     }
 }
 

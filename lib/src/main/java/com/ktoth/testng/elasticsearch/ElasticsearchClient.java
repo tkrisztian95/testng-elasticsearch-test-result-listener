@@ -2,24 +2,36 @@ package com.ktoth.testng.elasticsearch;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kong.unirest.Unirest;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
+
+import java.net.URI;
 
 class ElasticsearchClient {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String CONTENT_TYPE_VALUE = "application/json";
 
-    private final String elasticHostUrl;
+    public static final String INDEX_MAPPING_TEST_RESULTS = "testng-test-result";
+    public static final String INDEX_MAPPING_TEST_RUNS = "testng-test-run";
 
-    public ElasticsearchClient(String elasticHostUrl) {
-        this.elasticHostUrl = elasticHostUrl;
+    private URI uri;
+
+    public ElasticsearchClient(URI uri) {
+        this.uri = uri;
     }
 
-    public void postTestResult(final ITestResult result, final String testRunId, final Long threadId, final String threadName, final String status) {
-        final TestResultDocument data = new TestResultDocument(testRunId, threadId, threadName, result, status);
+    public void postDocument(final TestResultDocument result) {
         try {
-            Unirest.post(elasticHostUrl + "/" + Constants.INDEX_MAPPING_TEST_RESULTS + "/" + TestResultDocument.type)
+            Unirest.post(uri + "/" + INDEX_MAPPING_TEST_RESULTS + "/" + TestResultDocument.TYPE)
+                    .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
+                    .body(MAPPER.writeValueAsString(result)).asJson();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void postDocument(final TestRunDocument data) {
+        try {
+            Unirest.post(uri + "/" + INDEX_MAPPING_TEST_RUNS + "/" + TestRunDocument.TYPE)
                     .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
                     .body(MAPPER.writeValueAsString(data)).asJson();
         } catch (Exception e) {
@@ -27,15 +39,11 @@ class ElasticsearchClient {
         }
     }
 
-    public void postTestRun(final ITestContext result, final String testRunId) {
-        final TestRunDocument data = new TestRunDocument(testRunId, result.getStartDate(), result.getEndDate());
-        try {
-            Unirest.post(elasticHostUrl + "/" + Constants.INDEX_MAPPING_TEST_RUNS + "/" + TestRunDocument.type)
-                    .header(CONTENT_TYPE, CONTENT_TYPE_VALUE)
-                    .body(MAPPER.writeValueAsString(data)).asJson();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public URI getUri() {
+        return uri;
     }
 
+    public void setUri(URI uri) {
+        this.uri = uri;
+    }
 }

@@ -15,6 +15,8 @@ public class LocalizedTextProvider {
 
     public String getGreeting() {
         switch (language) {
+            case de_DE:
+                return "Hallo %s!";
             case hu_HU:
                 return "Szia %s!";
             case en_EN:
@@ -25,6 +27,8 @@ public class LocalizedTextProvider {
 
     public String getBye() {
         switch (language) {
+            case de_DE:
+                return "Tschüss %s!";
             case hu_HU:
                 return "Viszlát %s!";
             case en_EN:
