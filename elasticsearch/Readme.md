@@ -6,7 +6,7 @@
 See: https://stackoverflow.com/questions/42111566/elasticsearch-in-windows-docker-image-vm-max-map-count
 ```
 // Run commands in CMD:
-$ wsl -d docker-desktop
-$ sysctl -w vm.max_map_count=262144
+> wsl -d docker-desktop
+> sysctl -w vm.max_map_count=262144
 ```
 Then, try compose down with `docker-compose down` and up again!
