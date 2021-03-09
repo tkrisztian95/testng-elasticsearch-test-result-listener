@@ -32,7 +32,7 @@ In the navigation menu try find the **Discover** menu item under the **Analytics
 Click the `+ Create index Pattern button` to create a default one. 
 In the first step set the Index pattern name to `*`. 
 In the second step select the `executionDate` from the drop-down menu to be used as `Time field
-`. Click the `Create Index Pattern` button. *
+`. Click the `Create Index Pattern` button.*
 
 You should see the test result documents data on this view that have been sent to the Elasticsearch server during the test run.
 
