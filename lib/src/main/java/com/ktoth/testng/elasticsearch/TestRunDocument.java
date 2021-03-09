@@ -17,8 +17,8 @@ class TestRunDocument {
 
     public static final String TYPE = "testng-test-run";
 
-    @JsonProperty("runId")
-    private String runId;
+    @JsonProperty("testRunId")
+    private String testRunId;
 
     @JsonProperty("startDate")
     private String startDate;
@@ -27,17 +27,17 @@ class TestRunDocument {
     private String finishDate;
 
     public TestRunDocument(String runId, Date startDate, Date finishDate) {
-        this.runId = runId;
+        this.testRunId = runId;
         this.startDate = basicDateTimeFormatter.format(startDate.toInstant().atZone(ZoneId.systemDefault()));
         this.finishDate = basicDateTimeFormatter.format(finishDate.toInstant().atZone(ZoneId.systemDefault()));
     }
 
-    public String getRunId() {
-        return runId;
+    public String getTestRunId() {
+        return testRunId;
     }
 
-    public void setRunId(String runId) {
-        this.runId = runId;
+    public void setTestRunId(String testRunId) {
+        this.testRunId = testRunId;
     }
 
     public String getStartDate() {
