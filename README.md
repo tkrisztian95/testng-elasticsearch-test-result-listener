@@ -148,7 +148,7 @@ Host: localhost:9200
                 "_id": "gVDe6ncB-vd3i6QNNrW4",
                 "_score": 1.0,
                 "_source": {
-                    "runId": "e30229d9-7e33-4f9c-a8d1-3c82c4dfa243",
+                    "testRunId": "e30229d9-7e33-4f9c-a8d1-3c82c4dfa243",
                     "startDate": "2021-02-28T23:59:21.760+0100",
                     "finishDate": "2021-02-28T23:59:27.792+0100"
                 }
