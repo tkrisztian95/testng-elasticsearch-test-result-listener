@@ -5,7 +5,7 @@
 ## [Resolve on Windows] Unable to start Elasticsearch "max virtual memory areas vm.max_map_count [65530]  is too low, increase to at least [262144]"
 See: https://stackoverflow.com/questions/42111566/elasticsearch-in-windows-docker-image-vm-max-map-count
 ```
-Run commands in CMD:
+// Run commands in CMD:
 $ wsl -d docker-desktop
 $ sysctl -w vm.max_map_count=262144
 ```
