@@ -6,7 +6,9 @@
 
     <groupId>com.ktoth</groupId>
     <artifactId>testng-elasticsearch-extension</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- Only semantic versions are supported (i.e. x.y.z) -->
+    <version>0.0.1</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
