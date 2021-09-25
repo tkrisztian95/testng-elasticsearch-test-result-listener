@@ -19,7 +19,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://github.com/tkrisztian95/testng-elasticsearch-test-result-listener</url>
+            <url>https://maven.pkg.github.com/tkrisztian95/testng-elasticsearch-test-result-listener</url>
         </repository>
     </distributionManagement>
 
